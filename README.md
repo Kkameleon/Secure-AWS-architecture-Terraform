@@ -3,7 +3,7 @@
 Deployment of secure AWS architectures using terraform
 
 ## VERSION 1 (Wavegame 2020)
-![Aws architecture](./archv1.png "Architecture deployed")
+![Aws architecture](./img/archv1.png "Architecture deployed")
 
 This diagram belongs to Wavestone, created for the Wavegame contest. We won the AWS challenge with this code. 
 
@@ -16,9 +16,17 @@ Run with
 $ terraform apply -var-file="varDB.tfvars" -auto-approve
 
 ## VERSION 2 (Wavegame 2021)
-![Aws architecture](./archv2.png "Architecture deployed")
+![Aws architecture](./img/archv2.png "Architecture deployed")
 
-We won the AWS challenge and the whole competition with this code.
+We won the AWS challenge and the whole competition with this code. I made the schema, it might not be 100% reliable.
 
-You need to put you aws keys into provider.tf for the app and the secu account
+You need to put you aws keys into both provider.tf of the app and the secu account before running the code.
+
+Run the secu account first and wait for complete deploy before running the app account. The app account can take some time to deploy, especially the databases (10 minutes).
+
+Run with
+
+$ terraform apply -auto-approve
+
+in both accounts
 
