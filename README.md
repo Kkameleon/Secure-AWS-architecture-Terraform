@@ -33,6 +33,8 @@ in both accounts
 ## VERSION 3 (Wavegame 2022)
 ![Aws architecture](./img/archv3.png "Architecture deployed")
 
+We won the AWS challenge with this code and on our way to win the whole competition. I made the schema, it might not be 100% reliable.
+
 Prerequisites :
 - Install Terraform
 - Install the AWS CLI
