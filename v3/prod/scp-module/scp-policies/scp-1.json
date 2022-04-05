@@ -1,0 +1,52 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "StatementForOtherRDS",
+            "Effect": "Deny",
+            "Action": [
+                "rds:CreateDBInstance"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "ForAnyValue:StringEquals": {
+                    "rds:DatabaseEngine": [
+                        "mariadb",
+                        "mysql",
+                        "oracle-ee",
+                        "oracle-se2",
+                        "oracle-se1",
+                        "oracle-se",
+                        "postgres",
+                        "sqlserver-ee",
+                        "sqlserver-se",
+                        "sqlserver-ex",
+                        "sqlserver-web"
+                    ]
+                },
+                "Bool": {
+                    "rds:StorageEncrypted": false,
+                    "rds:MultiAz": false
+                }
+            }
+        },
+        {
+            "Sid": "StatementForAurora",
+            "Effect": "Deny",
+            "Action": [
+                "rds:CreateDBCluster"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "Bool": {
+                    "rds:StorageEncrypted": false,
+                    "rds:MultiAz": false
+                }
+            }
+        }
+    ]
+}

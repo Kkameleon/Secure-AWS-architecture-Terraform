@@ -1,0 +1,7 @@
+Key-Type: RSA
+Subkey-Type: RSA
+Name-Real: break_glass
+Name-Comment: PGP key for Break Glass's AWS IAM user
+Name-Email: kkameleon.deployment@gmail.com
+Expire-Date: 0
+# Passphrase: COMMENT_OUT_SO_IT_WILL_PROMPT_TO_INSERT_PASSWORD

@@ -1,0 +1,74 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyRunInstanceWithNoMetierTag",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": [
+        "arn:aws:ec2:*:*:instance/*"
+      ],
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/metier": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyRunInstanceWithNoEnvTag",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": [
+        "arn:aws:ec2:*:*:instance/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestTag/Env": ["dev","prod","preprod"]
+        }
+      }
+    },
+    {
+      "Sid": "DenyNetworkWithNoExpositionTag",
+      "Effect": "Deny",
+      "Action": "ec2:AssociateSubnetCidrBlock",
+      "Resource": [
+        "arn:aws:ec2:*:*:subnet/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestTag/exposition": ["public","private"]
+        }
+      }
+    },
+    {
+      "Sid": "DenyPublicNetworkWithNoPublicTag",
+      "Effect": "Deny",
+      "Action": "ec2:AssociateSubnetCidrBlock",
+      "Resource": [
+        "arn:aws:ec2:*:*:subnet/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "ec2:ResourceTag/exposition": "public"
+        },
+        "StringEquals":{
+          "ec2:Attribute/map_public_ip_on_launch": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyS3BucketWithoutTags",
+      "Effect": "Deny",
+      "Action": "s3:CreateBucket",
+      "Resource": "arn:aws:s3:::*",
+      "Condition": {
+          "Null": {
+              "aws:RequestTag/Availability": "true",
+              "aws:RequestTag/Integrity": "true",
+              "aws:RequestTag/Confidentiality": "true",
+              "aws:RequestTag/Tracability": "true"
+          }
+      }
+  }
+  ]
+}

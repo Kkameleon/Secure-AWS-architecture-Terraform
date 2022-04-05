@@ -30,3 +30,24 @@ $ terraform apply -auto-approve
 
 in both accounts
 
+## VERSION 3 (Wavegame 2022)
+![Aws architecture](./img/archv3.png "Architecture deployed")
+
+Prerequisites :
+- Install Terraform
+- Install the AWS CLI
+- Configure your provider (organisation, identification key and secret key)
+- Configure the id of your SCP bucket
+- Change the email address subscribed to the SNS topic in the input variables `./prod/variables.tf
+- Deploy the security account before deploying the production account code
+- Check that the name of the bucket deployed in the security account is correct in the `./prod/variables.tf` file
+
+Remarks
+- The test directory could be extended and is not currently used
+
+Useful commands :
+|                   |                                        |
+|-------------------|----------------------------------------|
+| terraform apply   | Ressources creation                    |
+| terraform destroy | Ressources destruction                 |
+| aws configure     | Set the default aws profile            |
